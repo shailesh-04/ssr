@@ -1,0 +1,25 @@
+{
+  "name": "todo-ssr-app",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "nodemon -r esbuild-register src/server.js",
+    "dev:client": "vite",
+    "build": "npm run build:server && npm run build:client",
+    "build:server": "esbuild src/server.js --bundle --outfile=dist/server.js --platform=node --target=node20",
+    "build:client": "vite build",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.4",
+    "esbuild": "^0.25.10",
+    "esbuild-register": "^3.6.0",
+    "nodemon": "^3.1.10",
+    "vite": "^6.0.1"
+  }
+}
