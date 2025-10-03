@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "name": "Introduction to React",
+    "description": "Learn the basics of React programming",
+    "createdAt": "2024-01-15T10:30:00.000Z",
+    "updatedAt": "2024-01-15T10:30:00.000Z"
+  },
+  {
+    "id": "2",
+    "name": "Advanced TypeScript",
+    "description": "Deep dive into TypeScript features",
+    "createdAt": "2024-01-16T14:20:00.000Z",
+    "updatedAt": "2024-01-16T14:20:00.000Z"
+  },
+  {
+    "id": "3",
+    "name": "Node.js Fundamentals",
+    "description": "Understanding server-side JavaScript",
+    "createdAt": "2024-01-17T09:15:00.000Z",
+    "updatedAt": "2024-01-17T09:15:00.000Z"
+  }
+]

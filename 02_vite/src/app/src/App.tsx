@@ -1,33 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './assets/styles/App.css'
-function App() {
-  const [count, setCount] = useState(0)
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+import React from "react";
+import { Routes, Route, Link } from "react-router-dom";
+import PopularBlock from "./pages/PopularBlock";
+import Login from "./pages/Login";
+import BlockPage from "./pages/BlockPage";
+import UserDashboard from "./pages/UserDashboard";
+import "./styles/App.css";
+
+const Navigation = () => (
+  <nav className="navigation">
+    <div className="nav-container">
+      <a href="/" className="nav-logo">BlockApp</a>
+      <div className="nav-links">
+        <a href="/" className="nav-link">Home</a>
+        <Link to="/login" className="nav-link">Login</Link>
+        <Link to="/dashboard" className="nav-link">Dashboard</Link>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  </nav>
+);
+
+interface AppProps {
+  page?: string;
+  props?: Record<string, any>;
 }
 
-export default App
+const App: React.FC<AppProps> = ({ page = "PopularBlock", props = {} }) => {
+  // SSR mode (no router)
+  if (page !== "client") {
+    switch (page) {
+      case "Login": return <Login {...props} />;
+      case "BlockPage": return <BlockPage {...props} />;
+      default: return <PopularBlock {...props} />;
+    }
+  }
+
+  // CSR mode (routes only, router comes from entry-client)
+  return (  
+    <div className="app">
+      <Navigation />
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<PopularBlock />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<UserDashboard />} />
+          <Route path="/block/:id" element={<BlockPage />} />
+        </Routes>
+      </main>
+    </div>
+  );
+};
+
+export default App;

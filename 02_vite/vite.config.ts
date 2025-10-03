@@ -24,5 +24,5 @@ export default defineConfig({
         main: path.resolve(__dirname, "src/app/index.html"),
       }
     },
-  },
+  }
 });
